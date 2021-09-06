@@ -70,3 +70,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
 gem 'pry-byebug'
+
+# gem 'kaminari','~> 1.2.1'
+# ページング機能の実装には、gemの「kaminari」を使います。
+# ページングの機能を実装して、1つのページに表示できる数を制限しましょう。

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  # ログインユーザーによってのみ実行可能
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show

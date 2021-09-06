@@ -1,9 +1,14 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  # ログインユーザーによってのみ実行可能
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  # 現在ログインしているユーザーをモデルオブジェクトとして利用できます。
+  # 関連付けがされている場合、子要素・親要素の取得などが可能です。
 
   def show
     @book = Book.find(params[:id])
-    @book_new = Book.new
+    @book_comment = BookComment.new
+    # コメントのインスタンス変数を記述
   end
 
   def index
@@ -14,6 +19,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    # current_user	サインインしているユーザーを取得する
     if @book.save
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
